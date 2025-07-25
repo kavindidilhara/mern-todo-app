@@ -1,4 +1,8 @@
-.App{
-  margin:0 ;
-  padding: 0;
+.App {
+  margin: 0;
+  padding: 50px;
+  background-color: antiquewhite;
+  font-weight: 500;
+  font-size: 1.2 rem;
+  height: 100wh;
 }
