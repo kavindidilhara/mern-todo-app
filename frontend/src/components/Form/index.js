@@ -1,17 +1,18 @@
-import React from 'react';
-import { FormContainer, Input, Button } from './styles';
+import React from "react";
+import { FormContainer, Input, Button } from "./styles";
 
-function Form() {
+function Form({ input, setInput }) {
   return (
     <FormContainer>
-        <Input 
-        value = ''
-        type = 'text'
-        role = 'input'
-        />
-        <Button type="submit">Add</Button>
+      <Input
+        value={input}
+        onChange={(e) => setInput(e.target.value)}
+        type="input"
+        role="input"
+      />
+      <Button type="submit">Add</Button>
     </FormContainer>
-  )
+  );
 }
 
 export default Form;
