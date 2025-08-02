@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { Container } from "./styles";
 import Form from "../Form";
-import axios from "../../axios"
+import axios from "../../axios";
 
 function Todo() {
   const [input, setInput] = useState("");
@@ -11,10 +11,10 @@ function Todo() {
 
   const fetchData = async () => {
     try {
-      const response = await axios.get("/todos")
+      const response = await axios.get("/todos");
       setTodos(response.data);
     } catch (err) {
-      console.log(err.message)
+      console.log(err.message);
     }
   };
 
@@ -22,9 +22,19 @@ function Todo() {
     fetchData();
   }, []);
 
-  const addTodo = async () => {
-    console.log('addedTodo')
-  }
+  const addTodo = async (e) => {
+    e.preventDefault();
+    if (input.length === 0) return null;
+    await axios.post("/todos", [
+      {
+        ...todos,
+        text: input,
+        completed: false,
+      },
+    ]);
+    fetchData();
+    setInput("");
+  };
 
   console.log(todos, "todos");
 
@@ -32,7 +42,7 @@ function Todo() {
     <Container>
       <h2>List of To do</h2>
       {/*Form component*/}
-      <Form input={input} setInput={setInput} />
+      <Form input={input} setInput={setInput} addTodo={addTodo} />
       {/*To do List*/}
       {/*Key*/}
       {/*Author component*/}
